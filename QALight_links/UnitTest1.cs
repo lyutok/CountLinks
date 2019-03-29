@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Linq;
 
 namespace Selenium
 {
@@ -9,8 +10,7 @@ namespace Selenium
     {
         // Assert
         public IWebDriver driver;
-        int kolvoLinks = 7;
-
+        
         [SetUp]
         public void SetUp()
         {
@@ -30,22 +30,12 @@ namespace Selenium
         public void countLinks()
         {
             // Act
-            oldQALight oldQALightpage = new oldQALight(driver);
-            oldQALightpage.links.FindElements(By.).Count();
-
-            // oldQALightpage.searchButton.Click();
+            OldQALight oldQALightpage = new OldQALight(driver);
+            
 
             // Assert
-            Assert.True(kolvoLinks == 7);
+            Assert.True(oldQALightpage.links.Count() == 7, "Qty of links is not 7");
 
-            //Assert.True(IsElementPresent(oldQALightpage.seleniumClass),
-            //    $"seleniumClass {nameof(oldQALightpage.seleniumClass)}' is not present on the page.");
-
-           
-            void SetImplicitTimeOut(IWebDriver driver, int timeout)
-            {
-                driver.Manage().Timeouts().ImplicitWait = System.TimeSpan.FromSeconds(timeout);
-            }
         }
     }
 }
